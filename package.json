@@ -15,5 +15,6 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.47.14"
-  }
+  },
+  "homepage": "https://cribepencheff.github.io/u05-todo-app"
 }

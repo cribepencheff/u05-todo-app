@@ -2,12 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" href="https://fav.farm/☑️" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>Todo App</title>
   </head>
+
   <body>
-    <div id="app"></div>
+    <header>
+      <button id="log-out" class="hide">Log out</button>
+    </header>
+
+    <H1>Todo App</H1>
+
+    <div id="app">
+      <div id="todos" class="hide">
+        <form id="todo-form">
+          <input type="text" id="todo-input" name="todo-new" class="form-control" placeholder="New todo..">
+          <button id="add-todo-btn" class="btn btn-primary" disabled>Add Todo</button>
+        </form>
+
+        <div id="todo-list"></div>
+      </div>
+    </div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

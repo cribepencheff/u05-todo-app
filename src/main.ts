@@ -13,28 +13,27 @@ const addBtn = document.getElementById('add-todo-btn') as HTMLButtonElement;
 
 const initApp = async () => {
   const session = await checkSession();
+  let inputValue = '';
 
   if (session) {
     todosEl.classList.remove('hide');
     logOutBtn.classList.remove('hide');
-
     logOutBtn.addEventListener("click", handleLogOut)
 
     // Enable submit button
     inputEl.addEventListener("input", () => {
-      if (inputEl.value.length >= 3) {
-        addBtn.disabled = false;
-      }
+      inputValue = inputEl.value.trim();
+      addBtn.disabled = inputValue.length < 3;
     })
 
-    // Post todo
+    // Add todo
     addBtn.addEventListener("click", (e) => {
       e.preventDefault();
-
-      if (inputEl.value) {
-        createTodo(inputEl.value);
+      if (inputValue) {
+        createTodo(inputValue);
         addBtn.disabled = true;
         inputEl.value = '';
+        inputValue = '';
       }
     });
 

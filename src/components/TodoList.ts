@@ -1,37 +1,30 @@
-import { supabase } from '../services/supabaseClient';
 import { Todo } from '../types/app.types';
 import { getUserTodos } from '../utils/getUserTodos';
-import { deleteTodo } from '../utils/todosService';
+import { handleEditTodo } from '../utils/todosService';
 
 export const showTodos = async () => {
-  const { data } = await  supabase.auth.getUser();
-  const userId = data.user?.id;
   const main = document.getElementById('todo-list') as HTMLElement;
   const ul = document.createElement("ul");
   const fetchedTodos: Todo[] = await getUserTodos();
-  let hasTodos = fetchedTodos.length;
+  let hasTodos = fetchedTodos.length > 0;
 
   if (hasTodos) {
+
     ul.innerHTML = fetchedTodos.map(todo => `
-      <li data-id="${todo.id}">
+      <li data-id="${todo.id}" data-title="${todo.title}">
         ${todo.title}
-        <button class="delete-todo">DEL</button>
+        <button class="delete-todo">Del</button>
+        <button class="edit-todo">Edit</button>
       </li>
     `).join("");
 
-    ul.querySelectorAll('.delete-todo').forEach((deleteBtn) => {
-      deleteBtn.addEventListener('click', async (e) => {
-        const li = (e.target as HTMLElement).closest('li');
-        const todoId = parseInt(li?.getAttribute('data-id')!);
-        const confirmDelete = confirm(`Are you sure you want to remove this Todo?`);
+    ul.querySelectorAll('button').forEach((btn) => {
+      const li = btn.closest('li')!;
+      const todoId = parseInt(li.getAttribute('data-id')!);
+      const todoTitle = li.getAttribute('data-title')!;
 
-        if (todoId && userId && confirmDelete) {
-          await deleteTodo(todoId, userId);
-        }
-      })
+      btn.addEventListener('click', () => handleEditTodo(btn, todoId, todoTitle));
     });
-
-
   } else {
     ul.innerHTML = `<li>List empty, please add a todo</li>`
   }

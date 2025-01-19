@@ -1,4 +1,5 @@
 import { supabase } from '../services/supabaseClient';
+import { addSpinnerSmall, removeSpinnerSmall } from './Loading';
 
 export const handleAuthForm = (app: HTMLElement, isSignUp: boolean) => {
   const authForm = document.createElement('form');
@@ -25,11 +26,6 @@ export const handleAuthForm = (app: HTMLElement, isSignUp: boolean) => {
   errorMessage.id = 'errorMessage';
   authForm.appendChild(errorMessage);
 
-  // Succsess message
-  const successMessage = document.createElement('div');
-  successMessage.id = 'successMessage';
-  successMessage.textContent = 'Signup successful! Please check your email to confirm your account before logging in.';
-
   authForm.appendChild(emailInput);
   authForm.appendChild(passwordInput);
   authForm.appendChild(submitButton);
@@ -42,18 +38,14 @@ export const handleAuthForm = (app: HTMLElement, isSignUp: boolean) => {
     const email = emailInput.value;
     const password = passwordInput.value;
     submitButton.disabled = true;
+    addSpinnerSmall(submitButton);
 
     try {
       if (isSignUp) {
-
         // Handle sign up
         const { error } = await supabase.auth.signUp({ email, password });
         if (error) throw error
-
-        handleAuthForm(app, false);
-        app.insertBefore(successMessage, app.firstChild);
-        return; // Return, to show confirmation message
-
+        alert('Signup successful! Please check your email to confirm your account before logging in.');
       } else {
 
         // Handle log in
@@ -70,6 +62,7 @@ export const handleAuthForm = (app: HTMLElement, isSignUp: boolean) => {
 
     finally {
       submitButton.disabled = false;
+      removeSpinnerSmall(submitButton);
     }
   });
 

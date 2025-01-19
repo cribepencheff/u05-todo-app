@@ -101,3 +101,29 @@ button:focus-visible {
 .hide {
   display: none !important;
 }
+
+button {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.spinner {
+  height: 12px;
+  width: 12px;
+  animation: rotate .8s infinite linear;
+  border: 1px solid #fff;
+  border-right-color: transparent;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
+}

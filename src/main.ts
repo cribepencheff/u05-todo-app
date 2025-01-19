@@ -1,9 +1,10 @@
 import './style.scss';
-import { handleAuthForm } from './components/AuthForm';
 import { checkSession } from './utils/session';
-import { ShowTodoList } from './components/ShowTodoList';
 import { createTodo } from './utils/todosService';
 import { handleLogOut } from './services/auth';
+import { handleAuthForm } from './components/AuthForm';
+import { addSpinnerSmall, removeSpinnerSmall } from './components/Loading';
+import { ShowTodoList } from './components/ShowTodoList';
 
 const app = document.getElementById('app') as HTMLElement;
 const logOutBtn = document.getElementById('log-out') as HTMLButtonElement;
@@ -18,7 +19,12 @@ const initApp = async () => {
   if (session) {
     todosEl.classList.remove('hide');
     logOutBtn.classList.remove('hide');
-    logOutBtn.addEventListener("click", handleLogOut)
+    logOutBtn.addEventListener("click", async () => {
+
+      addSpinnerSmall(logOutBtn);
+      await handleLogOut();
+      removeSpinnerSmall(logOutBtn);
+    });
 
     // Enable submit button
     inputEl.addEventListener("input", () => {
@@ -38,7 +44,9 @@ const initApp = async () => {
     });
 
     // Render Todo list
-    ShowTodoList();
+    addSpinnerSmall(todosEl);
+    await ShowTodoList();
+    removeSpinnerSmall(todosEl);
 
   } else {
     // Show Signup or Login form

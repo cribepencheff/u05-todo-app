@@ -45,6 +45,5 @@ export const ShowTodoList = async () => {
     ul.innerHTML = `<li>List empty, please add a todo</li>`
   }
 
-  main.innerHTML = `<h3>Your todo list</h3>`;
   main.appendChild(ul);
 };

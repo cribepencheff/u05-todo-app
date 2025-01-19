@@ -1,5 +1,5 @@
 import { supabase } from '../services/supabaseClient';
-import { showTodos } from '../components/TodoList';
+import { TodoList } from '../components/TodoList';
 import { Todo } from '../types/app.types';
 
 export const createTodo = async (title: string): Promise<Todo> => {
@@ -19,7 +19,7 @@ export const createTodo = async (title: string): Promise<Todo> => {
 
   if (error) throw error;
 
-  showTodos();
+  TodoList();
   return todoData as Todo;
 };
 
@@ -35,7 +35,7 @@ export const deleteTodo = async (todoId: number, userId: string): Promise<boolea
     return false;
   }
 
-  showTodos();
+  TodoList();
   return true;
 };
 
@@ -51,7 +51,7 @@ export const editTodoTitle = async (todoId: number, userId: string, todoTitle: s
     return false;
   }
 
-  showTodos();
+  TodoList();
   return true;
 };
 

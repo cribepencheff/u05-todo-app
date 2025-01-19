@@ -1,7 +1,7 @@
 import './style.scss';
-import { handleAuthForm } from './components/authForm';
+import { handleAuthForm } from './components/AuthForm';
 import { checkSession } from './utils/session';
-import { showTodos } from './components/TodoList';
+import { TodoList } from './components/TodoList';
 import { createTodo } from './utils/todosService';
 import { handleLogOut } from './services/auth';
 
@@ -38,7 +38,7 @@ const initApp = async () => {
     });
 
     // Render Todo list
-    showTodos();
+    TodoList();
 
   } else {
     // Show Signup or Login form

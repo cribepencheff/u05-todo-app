@@ -2,7 +2,7 @@ import { Todo } from '../types/app.types';
 import { getUserTodos } from '../utils/getUserTodos';
 import { handleEditTodo } from '../utils/todosService';
 
-export const showTodos = async () => {
+export const TodoList = async () => {
   const main = document.getElementById('todo-list') as HTMLElement;
   const ul = document.createElement("ul");
   const fetchedTodos: Todo[] = await getUserTodos();
@@ -10,13 +10,19 @@ export const showTodos = async () => {
 
   if (hasTodos) {
 
-    ul.innerHTML = fetchedTodos.map(todo => `
-      <li data-id="${todo.id}" data-title="${todo.title}">
-        ${todo.title}
-        <button class="delete-todo">Del</button>
-        <button class="edit-todo">Edit</button>
-      </li>
-    `).join("");
+    ul.innerHTML = fetchedTodos
+      .sort((a, b) => {
+        const createdAtA = new Date(a.created_at);
+        const createdAtB = new Date(b.created_at);
+        return createdAtB.getTime() - createdAtA.getTime();
+      })
+      .map(todo => `
+        <li data-id="${todo.id}" data-title="${todo.title}">
+          ${todo.title}
+          <button class="delete-todo">Del</button>
+          <button class="edit-todo">Edit</button>
+        </li>
+      `).join("");
 
     ul.querySelectorAll('button').forEach((btn) => {
       const li = btn.closest('li')!;

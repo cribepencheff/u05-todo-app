@@ -98,6 +98,15 @@ button:focus-visible {
   }
 }
 
+#header {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.75rem;
+  box-sizing: border-box;
+}
+
 .hide {
   display: none !important;
 }

@@ -1,5 +1,5 @@
 import { supabase } from '../services/supabaseClient';
-import { TodoList } from '../components/TodoList';
+import { ShowTodoList } from '../components/ShowTodoList';
 import { Todo } from '../types/app.types';
 
 export const createTodo = async (title: string): Promise<Todo> => {
@@ -19,7 +19,7 @@ export const createTodo = async (title: string): Promise<Todo> => {
 
   if (error) throw error;
 
-  TodoList();
+  ShowTodoList();
   return todoData as Todo;
 };
 
@@ -35,7 +35,7 @@ export const deleteTodo = async (todoId: number, userId: string): Promise<boolea
     return false;
   }
 
-  TodoList();
+  ShowTodoList();
   return true;
 };
 
@@ -51,12 +51,12 @@ export const editTodoTitle = async (todoId: number, userId: string, todoTitle: s
     return false;
   }
 
-  TodoList();
+  ShowTodoList();
   return true;
 };
 
 // Handle Todo event: edit, delete
-export const handleEditTodo = async (btn: HTMLButtonElement, todoId: number, todoTitle: string) => {
+export const handleRenameTodo = async (btn: HTMLButtonElement, todoId: number, todoTitle: string) => {
   const { data } = await  supabase.auth.getUser();
   const userId = data.user?.id;
   const isDelete = btn.className.includes("delete-todo");
@@ -78,4 +78,22 @@ export const handleEditTodo = async (btn: HTMLButtonElement, todoId: number, tod
     if (!updatedTodoTitle || updatedTodoTitle.trim() === '') return;
     editTodoTitle(todoId, userId, updatedTodoTitle.trim());
   }
+}
+
+export const handleTodoCompletion = async (todoId: number, completed: boolean): Promise<boolean> => {
+  const { data } = await  supabase.auth.getUser();
+
+  const { error } = await supabase
+    .from('todos')
+    .update({ completed: completed })
+    .eq('user_id', data.user?.id)
+    .eq('id', todoId);
+
+  if (error) {
+    console.error('Error updating todo:', error.message);
+    return false;
+  }
+
+  ShowTodoList();
+  return true;
 }

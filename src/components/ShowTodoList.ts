@@ -1,35 +1,45 @@
 import { Todo } from '../types/app.types';
 import { getUserTodos } from '../utils/getUserTodos';
-import { handleEditTodo } from '../utils/todosService';
+import { handleRenameTodo, handleTodoCompletion } from '../utils/todosService';
 
-export const TodoList = async () => {
+export const ShowTodoList = async () => {
   const main = document.getElementById('todo-list') as HTMLElement;
   const ul = document.createElement("ul");
   const fetchedTodos: Todo[] = await getUserTodos();
   let hasTodos = fetchedTodos.length > 0;
 
   if (hasTodos) {
-
     ul.innerHTML = fetchedTodos
       .sort((a, b) => {
         const createdAtA = new Date(a.created_at);
         const createdAtB = new Date(b.created_at);
         return createdAtB.getTime() - createdAtA.getTime();
       })
-      .map(todo => `
-        <li data-id="${todo.id}" data-title="${todo.title}">
+      .map((todo) => `
+        <li data-id="${todo.id}" data-title="${todo.title}" data-completed="${todo.completed}" class="${todo.completed ? 'todo-completed' : ''}">
+          <input type="checkbox" class="completed-status" ${ todo.completed ? 'checked' : '' }>
           ${todo.title}
-          <button class="delete-todo">Del</button>
           <button class="edit-todo">Edit</button>
+          <button class="delete-todo">Del</button>
         </li>
       `).join("");
 
-    ul.querySelectorAll('button').forEach((btn) => {
-      const li = btn.closest('li')!;
+    ul.querySelectorAll('button, input').forEach((el) => {
+      const li = el.closest('li')!;
       const todoId = parseInt(li.getAttribute('data-id')!);
       const todoTitle = li.getAttribute('data-title')!;
 
-      btn.addEventListener('click', () => handleEditTodo(btn, todoId, todoTitle));
+      el.addEventListener("click", () => {
+        // Edit todo
+        if (el.tagName === "BUTTON") {
+          handleRenameTodo(el as HTMLButtonElement, todoId, todoTitle);
+        }
+
+        // Update completion
+        if (el.className.includes('completed-status')) {
+          handleTodoCompletion(todoId, (el as HTMLInputElement).checked)
+        }
+      })
     });
   } else {
     ul.innerHTML = `<li>List empty, please add a todo</li>`

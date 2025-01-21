@@ -1,0 +1,43 @@
+@use './variables' as *;
+@use './base' as *;
+
+#header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-lg;
+  width: 100%;
+  max-width: $max-width-lg;
+  padding: 0.75rem 1rem;
+  font-size: $font-size-sm;
+
+  @media #{$xlarge-up} {
+    padding: 1.25rem 1.75rem;
+  }
+
+
+  .user {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+  }
+
+  button {
+    box-shadow: $box-shadow-drk;
+  }
+}
+
+.todo-logo {
+  margin-right: auto;
+}
+
+@media (prefers-color-scheme: light) {
+  #header  {
+    color: $color-gray;
+
+    button {
+      box-shadow: $box-shadow-lgt;
+    }
+  }
+}

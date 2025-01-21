@@ -1,0 +1,134 @@
+@use './variables' as *;
+
+:root {
+  font-family: $font-family-medium;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: $color-bg-drk;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#app {
+  max-width: $max-width-lg;
+  margin: 0 auto;
+  padding: 0 1rem 1rem;
+  font-size: $font-size-sm;
+
+  @media #{$xlarge-up} {
+    padding: 0 1.75rem 1.25rem;
+  }
+}
+
+h1, h2, h3 {
+  white-space: pre-line;
+  line-height: 1.4;
+}
+
+h1, h2, h3, h4, h5, p {
+  max-width: $max-width-md;
+  margin-bottom: 1.75rem;
+}
+
+h1 {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  font-size: 1.8rem;
+
+  @media #{$small-down} {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media #{$medium-up} {
+    margin-top: 6vw;
+  }
+
+  @media #{$xlarge-up} {
+    margin-top: 4rem;
+  }
+}
+
+a {
+  font-weight: 500;
+  color: $color-primary;
+  text-decoration: inherit;
+
+  transition: color 0.25s;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+button {
+  border-radius: 50vw;
+  border: 1.5px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: $color-gray-drk;
+  color: $color-white;
+  cursor: pointer;
+  transition:
+    border-color 0.25s,
+    background-color 0.25s;
+
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+
+  &.btn-primary {
+    background-color: $color-primary;
+
+    &:hover {
+      background-color: $color-primary;
+    }
+  }
+
+  &.btn-large {
+    width: 100%;
+    border-radius: $border-radius;
+    font-size: $font-size-md;
+    line-height: 1.32;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: $color-body;
+    background-color: $color-bg-lgt;
+  }
+
+  button.btn-primary:hover {
+    background-color: $color-primary-hover;
+  }
+
+  a:hover {
+    color: $color-primary-hover;
+  }
+}
+
+picture.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.text-center {
+  text-align: center;
+}

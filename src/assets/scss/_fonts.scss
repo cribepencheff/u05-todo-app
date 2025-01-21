@@ -1,0 +1,29 @@
+@font-face {
+  font-family: 'GeneralSans-Medium';
+  src: url('../src/assets/webfonts/GeneralSans-Medium.woff2') format('woff2'),
+    url('../src/assets/webfonts/GeneralSans-Medium.woff') format('woff'),
+    url('../src/assets/webfonts/GeneralSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GeneralSans-Semibold';
+  src: url('../src/assets/webfonts/GeneralSans-Semibold.woff2') format('woff2'),
+    url('../src/assets/webfonts/GeneralSans-Semibold.woff') format('woff'),
+    url('../src/assets/webfonts/GeneralSans-Semibold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'GeneralSans-Bold';
+  src: url('../src/assets/webfonts/GeneralSans-Bold.woff2') format('woff2'),
+    url('../src/assets/webfonts/GeneralSans-Bold.woff') format('woff'),
+    url('../src/assets/webfonts/GeneralSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}

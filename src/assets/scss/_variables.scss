@@ -1,0 +1,52 @@
+// color
+$color-bg-lgt: #F9FBFE;
+$color-bg-drk: #242424;
+
+$color-body: #415a70;
+
+$color-white: #FFFFFF;
+$color-gray-lgt: #dddfe2;
+$color-gray: #7282a7;
+$color-gray-theme: #7d869b;
+$color-gray-drk: #46484B;
+$color-primary: #4f58f7;
+$color-primary-hover: #424be9;
+$color-contrast: #F303FF;
+$color-alert: #f0506a;
+$color-success: #2ab75e;
+$color-success-hover: #07aa5e;
+
+// Typography
+$font-family-semibold: 'GeneralSans-Semibold', system-ui, Avenir, Helvetica, Arial, sans-serif;
+$font-family-medium: 'GeneralSans-Medium', system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+$font-size-sm: 0.875rem;
+$font-size-md: 1rem;
+
+// Spacing
+$spacing-sm: 0.5rem;
+$spacing-md: 0.75rem;
+$spacing-lg: 1.25rem;
+
+// Container widths
+$max-width-sm: 26rem;
+$max-width-md: 44rem;
+$max-width-lg: 96rem;
+
+// Misc
+$box-shadow-lgt: 0px 4px 30px hsl(0deg 0% 50% / 12%);
+$box-shadow-drk: 0px 4px 30px rgb(10 10 10 / 25%);
+$border-radius: 0.375rem;
+
+// Media queries
+$xsmall: "(width < 37.5rem)";
+$small-up: "(width >= 37.5rem)";
+$small: "(width < 48rem) and (width >= 37.5rem)";
+$small-down: "(width < 48rem)";
+$medium-up: "(width >= 48rem)";
+$medium: "(width < 62.5rem) and (width >= 48rem)";
+$medium-down: "(width < 62.5rem)";
+$large-up: "(width >= 62.5rem)";
+$large-down: "(width < 75rem)";
+$xlarge-up: "(width >= 75rem)";
+

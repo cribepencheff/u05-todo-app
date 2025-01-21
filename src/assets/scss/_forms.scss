@@ -1,0 +1,70 @@
+@use './variables' as *;
+
+form {
+  width: 100%;
+  max-width: $max-width-sm;
+  margin: 0 auto;
+
+  button[type="submit"] {
+    margin-top: 0.75rem;
+  }
+
+  #errorMessage {
+    color: $color-alert;
+    font-size: $font-size-sm;
+  }
+}
+
+#authForm {
+  text-align: center;
+
+  .toggle-signup-login {
+    display: inline-block;
+    margin-top: 1.25rem;
+  }
+
+  button.signup {
+    background-color: $color-success;
+
+    &:hover {
+      background-color: $color-success-hover;
+      border-color: $color-success-hover;
+    }
+  }
+}
+
+input {
+  display: block;
+  width: 100%;
+  font-family: $font-family-medium;
+  margin-bottom: 0.75rem;
+
+  &::placeholder {
+    color: $color-gray-theme;
+  }
+
+  &[type="text"],
+  &[type="email"],
+  &[type="password"] {
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0.5rem 0.75rem;
+    border-radius: $border-radius;
+    border: none;
+    border: 1px solid transparent;
+    box-shadow: $box-shadow-lgt;
+    outline-color: transparent;
+    transition: outline-color 0.25s;
+
+    &:focus,
+    &:focus-visible {
+      outline-color: $color-primary;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    &::placeholder {
+      color: $color-gray;
+    }
+  }
+}

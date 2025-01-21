@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/u05-todo-app/',
+  base: '/u05-todo-app/'
 });

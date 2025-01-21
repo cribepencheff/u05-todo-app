@@ -9,6 +9,7 @@ import { ShowTodoList } from './components/ShowTodoList';
 
 const app = document.getElementById('app') as HTMLElement;
 const header = document.getElementById('header') as HTMLElement;
+const headerUser = header.querySelector('.user-email') as HTMLElement;
 const logOutBtn = document.getElementById('log-out') as HTMLButtonElement;
 const todosEl = document.getElementById('todos') as HTMLElement;
 const inputEl = document.getElementById('todo-input') as HTMLInputElement;
@@ -17,17 +18,22 @@ const addBtn = document.getElementById('add-todo-btn') as HTMLButtonElement;
 const initApp = async () => {
   const { data } = await supabase.auth.getUser();
   const session = await checkSession();
-  const displayUser = document.createElement("p") as HTMLElement;
-  displayUser.innerHTML = `user: ${data.user?.email}`;
+
+  headerUser.innerText = data.user?.email ?? 'User not logged in';
+
+  // const displayUser = document.createElement("div") as HTMLElement;
+  // displayUser.classList.add('user');
+  // displayUser.innerHTML = `user: ${data.user?.email}`;
+
   let inputValue = '';
 
   if (session) {
     todosEl.classList.remove('hide');
     logOutBtn.classList.remove('hide');
 
-    if (data.user) {
-      header.insertBefore(displayUser, logOutBtn);
-    }
+    // if (data.user) {
+    //   header.insertBefore(displayUser, logOutBtn);
+    // }
 
     logOutBtn.addEventListener("click", async () => {
       addSpinnerSmall(logOutBtn);

@@ -9,10 +9,19 @@
 
   <body>
     <header id="header">
+      <img class="todo-logo" src="./src/assets/images/todo-logo.svg" width="41" height="40" alt="Todo App Logo">
+
+      <div class="user">
+        <picture class="icon">
+          <source srcset="./src/assets/icons/user.svg" media="(prefers-color-scheme: light)">
+          <img src="./src/assets/icons/user-lgt.svg" alt="User icon">
+        </picture>
+
+        <span class="user-email"></span>
+      </div>
+
       <button id="log-out" class="hide">Log out</button>
     </header>
-
-    <H1>Todo App</H1>
 
     <div id="app">
       <div id="todos" class="hide">

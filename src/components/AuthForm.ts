@@ -5,31 +5,59 @@ export const handleAuthForm = (app: HTMLElement, isSignUp: boolean) => {
   const authForm = document.createElement('form');
   authForm.id = 'authForm';
 
-  // Email
+  // Preamble
+  const preamble= document.createElement('h1');
+  preamble.classList.add('text-center');
+  preamble.textContent = `Stay organized and achieve more\nThis todo-app keeps you on track and in charge`;
+
+  // Email input
   const emailInput = document.createElement('input');
   emailInput.type = 'email';
   emailInput.id = 'email';
-  emailInput.placeholder = 'Enter your email';
+  emailInput.placeholder = 'Email address';
 
-  // Pass
+  // Password input
   const passwordInput = document.createElement('input');
   passwordInput.type = 'password';
   passwordInput.id = 'password';
-  passwordInput.placeholder = 'Enter your password';
+  passwordInput.placeholder = 'Password';
 
-  // Submit El
+  // Submit button
   const submitButton = document.createElement('button');
-  submitButton.textContent = isSignUp ? 'Sign Up' : 'Login';
+  submitButton.type = "submit";
+  submitButton.classList.add('btn-large', 'btn-primary');
+  submitButton.textContent = isSignUp ? 'Sign Up' : 'Log in';
 
   // Error message
   const errorMessage = document.createElement('div');
   errorMessage.id = 'errorMessage';
-  authForm.appendChild(errorMessage);
+
+  // Toggle Signup vs Login
+  const signUpOrLogin = document.createElement('a');
+  signUpOrLogin.href = '#';
+  signUpOrLogin.classList.add('toggle-signup-login', 'text-center');
+
+  if (isSignUp) {
+    submitButton.classList.add('signup');
+    signUpOrLogin.textContent = `Already have an account?`;
+  } else {
+    submitButton.classList.remove('signup');
+    signUpOrLogin.textContent = `Create an account`;
+  }
+
+  signUpOrLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+    handleAuthForm(app, !isSignUp);
+  });
 
   authForm.appendChild(emailInput);
   authForm.appendChild(passwordInput);
+  authForm.appendChild(errorMessage);
   authForm.appendChild(submitButton);
+  authForm.appendChild(signUpOrLogin);
+
   app.innerHTML = '';
+  app.appendChild(preamble);
   app.appendChild(authForm);
 
   // Submit Event
@@ -45,7 +73,7 @@ export const handleAuthForm = (app: HTMLElement, isSignUp: boolean) => {
         // Handle sign up
         const { error } = await supabase.auth.signUp({ email, password });
         if (error) throw error
-        alert('Signup successful! Please check your email to confirm your account before logging in.');
+        alert('Signup successful! Please check your email to confirm your account to logg in.');
       } else {
 
         // Handle log in
@@ -65,19 +93,4 @@ export const handleAuthForm = (app: HTMLElement, isSignUp: boolean) => {
       removeSpinnerSmall(submitButton);
     }
   });
-
-  // Toggle Signup vs Login
-  const toggleLink = document.createElement('a');
-
-  toggleLink.href = '#';
-  toggleLink.textContent = isSignUp
-    ? `Already have an account? Log in here`
-    : `Don''t have an account? Sign up here`;
-
-  toggleLink.addEventListener('click', (e) => {
-    e.preventDefault();
-    handleAuthForm(app, !isSignUp);
-  });
-
-  app.appendChild(toggleLink);
 };

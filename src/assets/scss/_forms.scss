@@ -6,7 +6,7 @@ form {
   margin: 0 auto;
 
   button[type="submit"] {
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
   }
 
   #errorMessage {
@@ -23,12 +23,14 @@ form {
     margin-top: 1.25rem;
   }
 
-  button.signup {
-    background-color: $color-success;
+  button {
+    &.signup {
+      background-color: $color-success;
 
-    &:hover {
-      background-color: $color-success-hover;
-      border-color: $color-success-hover;
+      &:hover {
+        background-color: $color-success-hover;
+        border-color: $color-success-hover;
+      }
     }
   }
 }
@@ -64,6 +66,10 @@ input {
 
   @media (prefers-color-scheme: light) {
     &::placeholder {
+      color: $color-gray;
+    }
+
+    a.recovery-password {
       color: $color-gray;
     }
   }

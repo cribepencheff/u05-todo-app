@@ -16,11 +16,17 @@
     padding: 1.25rem 1.75rem;
   }
 
-
   .user {
     display: flex;
     align-items: center;
     gap: $spacing-sm;
+  }
+
+  .user-email {
+    @media #{$xsmall} {
+        display: inline-block;
+        max-width: 140px;
+    }
   }
 
   button {

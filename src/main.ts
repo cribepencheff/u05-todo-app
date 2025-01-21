@@ -1,7 +1,7 @@
 import './style.scss';
 import { supabase } from './services/supabaseClient';
 import { checkSession } from './utils/session';
-import { createTodo } from './utils/todosService';
+import { createTodo, handleClearList } from './utils/todosService';
 import { handleLogOut } from './services/auth';
 import { handleAuthForm } from './components/AuthForm';
 import { addSpinnerSmall, removeSpinnerSmall } from './components/Loading';
@@ -14,6 +14,7 @@ const logOutBtn = document.getElementById('log-out') as HTMLButtonElement;
 const todosEl = document.getElementById('todos') as HTMLElement;
 const inputEl = document.getElementById('todo-input') as HTMLInputElement;
 const addBtn = document.getElementById('add-todo-btn') as HTMLButtonElement;
+const clearListBtn = document.getElementById('clear-list-btn') as HTMLButtonElement;
 
 const initApp = async () => {
   const { data } = await supabase.auth.getUser();
@@ -21,24 +22,14 @@ const initApp = async () => {
 
   headerUser.innerText = data.user?.email ?? 'User not logged in';
 
-  // const displayUser = document.createElement("div") as HTMLElement;
-  // displayUser.classList.add('user');
-  // displayUser.innerHTML = `user: ${data.user?.email}`;
-
   let inputValue = '';
 
   if (session) {
     todosEl.classList.remove('hide');
     logOutBtn.classList.remove('hide');
 
-    // if (data.user) {
-    //   header.insertBefore(displayUser, logOutBtn);
-    // }
-
     logOutBtn.addEventListener("click", async () => {
-      addSpinnerSmall(logOutBtn);
       await handleLogOut();
-      removeSpinnerSmall(logOutBtn);
     });
 
     // Enable submit button
@@ -56,6 +47,12 @@ const initApp = async () => {
         inputEl.value = '';
         inputValue = '';
       }
+    });
+
+    // Clear list
+    clearListBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      handleClearList();
     });
 
     // Render Todo list

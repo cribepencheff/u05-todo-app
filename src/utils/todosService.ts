@@ -97,3 +97,24 @@ export const handleTodoCompletion = async (todoId: number, completed: boolean): 
   ShowTodoList();
   return true;
 }
+
+// Clear todo list
+export const handleClearList = async () => {
+  const confirmClear = confirm(`This will permanently delete all todos. Are you sure you want to continue?`);
+
+  if (confirmClear) {
+    const { data } = await  supabase.auth.getUser();
+
+    const { error } = await supabase
+      .from('todos')
+      .delete()
+      .eq('user_id', data.user?.id);
+
+    if (error) {
+      console.error('Error deleting todos:', error);
+      return
+    }
+
+    ShowTodoList();
+  }
+}

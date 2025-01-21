@@ -88,6 +88,10 @@ button {
   align-items: center;
   gap: 0.75rem;
 
+  &:disabled {
+    opacity: 0.5;
+  }
+
   &:focus,
   &:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
@@ -95,6 +99,7 @@ button {
 
   &.btn-primary {
     background-color: $color-primary;
+    color: $color-white;
 
     &:hover {
       background-color: $color-primary;
@@ -113,6 +118,15 @@ button {
   :root {
     color: $color-body;
     background-color: $color-bg-lgt;
+  }
+
+  button {
+    background-color: $color-white;
+    color: $color-gray;
+
+    &:hover {
+      border-color: $color-gray-lgt;
+    }
   }
 
   button.btn-primary:hover {

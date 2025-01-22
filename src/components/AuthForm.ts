@@ -8,7 +8,7 @@ export const handleAuthForm = (app: HTMLElement, isSignUp: boolean) => {
   // Preamble
   const preamble= document.createElement('h1');
   preamble.classList.add('text-center');
-  preamble.textContent = `Stay organized and achieve more\nThis todo-app keeps you on track and in charge`;
+  preamble.textContent = `Stay organized and achieve more.\nThis todo-app keeps you on track and in charge.`;
 
   // Email input
   const emailInput = document.createElement('input');

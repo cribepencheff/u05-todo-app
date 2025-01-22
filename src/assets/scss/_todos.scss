@@ -89,13 +89,13 @@
       display: block;
       width: 24px;
       height: 24px;
-      background-image: url('./src/assets/icons/unchecked.svg');
+      background-image: url('./assets/icons/unchecked.svg');
       margin-left: 0.375rem;
       margin-right: 1rem;
     }
 
     &:hover:before {
-      background-image: url('./src/assets/icons/unchecked-hover.svg');
+      background-image: url('./assets/icons/checked.svg');
     }
   }
 
@@ -109,11 +109,14 @@
 
     .button-group {
       opacity: 0.4;
-      pointer-events: none;
+
+      .edit-todo {
+        pointer-events: none;
+      }
     }
 
     label:before {
-      background-image: url('./src/assets/icons/checked.svg');
+      background-image: url('./assets/icons/checked.svg');
     }
   }
 
@@ -160,27 +163,33 @@
     box-shadow: $box-shadow-lgt;
 
     &:not(.todo-completed):hover {
-      border-color: $color-gray-lgt;;
+      border-color: $color-gray-lgt;
     }
+  }
+
+  #todo-list li.todo-completed label:before {
+    background-image: url('./assets/icons/checked-lgt.svg');
   }
 
   #todo-list li.todo-list-empty {
     background-color: transparent;
+    border: none;
     box-shadow: none;
     color: $color-gray;
   }
 }
 
 @media (prefers-color-scheme: dark) {
+  #todo-list li:not(.todo-completed):hover {
+    border-color: $color-bg-drk;
+    box-shadow: $box-shadow-drk;
+  }
+
   .button-group button:hover {
     border-color: $color-gray-theme;
   }
 
   #todo-list li.todo-list-empty img {
     filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.5));
-  }
-
-  #todo-list li.todo-completed label:before {
-    background-image: url('./src/assets/icons/checked-theme.svg');
   }
 }

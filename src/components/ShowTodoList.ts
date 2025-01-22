@@ -2,13 +2,23 @@ import { Todo } from '../types/app.types';
 import { getUserTodos } from '../utils/getUserTodos';
 import { handleRenameTodo, handleTodoCompletion } from '../utils/todosService';
 
+import iconDelete from '../assets/icons/delete.svg';
+import iconDeleteLight from '../assets/icons/delete-lgt.svg';
+import iconEdit from '../assets/icons/edit.svg';
+import iconEditLight from '../assets/icons/edit-lgt.svg';
+
 export const ShowTodoList = async () => {
   const main = document.getElementById('todo-list') as HTMLElement;
-  const randomNumber = Math.floor(Math.random() * 4) + 1;
   const todoListHeading = document.getElementById('todo-list-heading') as HTMLHeadingElement;
   const ul = document.createElement("ul");
   const fetchedTodos: Todo[] = await getUserTodos();
   let hasTodos = fetchedTodos.length > 0;
+
+  // Random illustration
+  const illustrationPaths = import.meta.glob('../assets/illustrations/*', { eager: true });
+  const illustrations: string[] = Object.values(illustrationPaths).map(image => (image as { default: string }).default);
+  const randomNumber = Math.floor(Math.random() * illustrations.length);
+  const randomIllustrationURL = illustrations[randomNumber];
 
   if (hasTodos) {
     todoListHeading.classList.remove('hide');
@@ -29,15 +39,15 @@ export const ShowTodoList = async () => {
           <div class="button-group">
             <button class="edit-todo">
               <picture class="icon">
-                <source srcset="./src/assets/icons/edit.svg" media="(prefers-color-scheme: light)">
-                <img src="./src/assets/icons/edit-lgt.svg" alt="Edit icon">
+                <source srcset="${iconEdit}" media="(prefers-color-scheme: light)">
+                <img src="${iconEditLight}" alt="Edit icon">
               </picture>
             </button>
 
             <button class="delete-todo">
               <picture class="icon">
-                <source srcset="./src/assets/icons/delete.svg" media="(prefers-color-scheme: light)">
-                <img src="./src/assets/icons/delete-lgt.svg" alt="Delete icon">
+                <source srcset="${iconDelete}" media="(prefers-color-scheme: light)">
+                <img src="${iconDeleteLight}" alt="Delete icon">
               </picture>
             </button>
           </div>
@@ -64,7 +74,7 @@ export const ShowTodoList = async () => {
   } else {
     ul.innerHTML = `
       <li class="todo-list-empty">
-        <img src="./src/assets/images/cactus-${randomNumber}.webp" width="200" height="200" alt="Happy cactus">
+        <img src="${randomIllustrationURL}" width="200" height="200" alt="Happy cactus">
         <h3 class="text-center">Your list is empty <br> - start fresh by adding a new task!</h3>
       </li>`;
     todoListHeading.classList.add('hide');

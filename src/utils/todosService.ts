@@ -68,12 +68,12 @@ export const handleRenameTodo = async (btn: HTMLButtonElement, todoId: number, t
   }
 
   if (isDelete) {
-    const confirmDelete = confirm(`Are you sure you want to remove this Todo?`);
+    const confirmDelete = confirm(`Are you sure you want to remove this task?`);
     confirmDelete && await deleteTodo(todoId, userId);
   }
 
   if (isEdit) {
-    const updatedTodoTitle = prompt('Rename todo: ', todoTitle);
+    const updatedTodoTitle = prompt('Update task name: ', todoTitle);
 
     if (!updatedTodoTitle || updatedTodoTitle.trim() === '') return;
     editTodoTitle(todoId, userId, updatedTodoTitle.trim());
@@ -100,7 +100,7 @@ export const handleTodoCompletion = async (todoId: number, completed: boolean): 
 
 // Clear todo list
 export const handleClearList = async () => {
-  const confirmClear = confirm(`This will permanently delete all todos. Are you sure you want to continue?`);
+  const confirmClear = confirm(`This will permanently delete all todos. \n Are you sure you want to continue?`);
 
   if (confirmClear) {
     const { data } = await  supabase.auth.getUser();

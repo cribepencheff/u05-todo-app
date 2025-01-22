@@ -70,69 +70,10 @@ a {
   }
 }
 
-button {
-  border-radius: 50vw;
-  border: 1.5px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: $font-size-sm;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: $color-gray-drk;
-  color: $color-white;
-  cursor: pointer;
-  transition:
-    border-color 0.25s,
-    background-color 0.25s;
-
-  display: inline-flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  gap: 0.75rem;
-
-  &:disabled {
-    opacity: 0.5;
-  }
-
-  &:focus,
-  &:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
-  }
-
-  &.btn-primary {
-    background-color: $color-primary;
-    color: $color-white;
-
-    &:hover {
-      background-color: $color-primary;
-    }
-  }
-
-  &.btn-large {
-    width: 100%;
-    border-radius: $border-radius;
-    font-size: $font-size-md;
-    line-height: 1.32;
-  }
-}
-
 @media (prefers-color-scheme: light) {
   :root {
     color: $color-body;
     background-color: $color-bg-lgt;
-  }
-
-  button {
-    background-color: $color-white;
-    color: $color-gray;
-
-    &:hover {
-      border-color: $color-gray-lgt;
-    }
-  }
-
-  button.btn-primary:hover {
-    background-color: $color-primary-hover;
   }
 
   a:hover {
@@ -147,4 +88,5 @@ picture.icon {
 
 .text-center {
   text-align: center;
+  width: 100%;
 }

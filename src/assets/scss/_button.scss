@@ -1,0 +1,68 @@
+@use './variables' as *;
+
+button {
+  white-space: normal;
+  border-radius: 50vw;
+  border: 1.5px solid transparent;
+  padding: 0.6em 1em;
+  font-size: $font-size-sm;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: $color-gray-drk;
+  color: $color-white;
+  cursor: pointer;
+  transition:
+    border-color 0.25s,
+    background-color 0.25s;
+
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
+
+  picture.icon {
+    margin: -0.5rem;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+
+  &.btn-primary {
+    background-color: $color-primary;
+    color: $color-white;
+
+    &:hover {
+      background-color: $color-primary;
+    }
+  }
+
+  &.btn-large {
+    width: 100%;
+    border-radius: $border-radius;
+    font-size: $font-size-md;
+    line-height: 1.32;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  button {
+    background-color: $color-white;
+    color: $color-gray;
+
+    &:hover {
+      border-color: $color-gray-lgt;
+    }
+
+    &.btn-primary:hover {
+      background-color: $color-primary-hover;
+    }
+  }
+}

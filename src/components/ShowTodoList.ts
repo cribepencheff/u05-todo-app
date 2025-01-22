@@ -4,13 +4,14 @@ import { handleRenameTodo, handleTodoCompletion } from '../utils/todosService';
 
 export const ShowTodoList = async () => {
   const main = document.getElementById('todo-list') as HTMLElement;
-  const clearListBtn = document.getElementById('clear-list-btn') as HTMLButtonElement;
+  const randomNumber = Math.floor(Math.random() * 4) + 1;
+  const todoListHeading = document.getElementById('todo-list-heading') as HTMLHeadingElement;
   const ul = document.createElement("ul");
   const fetchedTodos: Todo[] = await getUserTodos();
   let hasTodos = fetchedTodos.length > 0;
 
   if (hasTodos) {
-    clearListBtn.classList.remove('hide');
+    todoListHeading.classList.remove('hide');
 
     ul.innerHTML = fetchedTodos
       .sort((a, b) => {
@@ -20,10 +21,26 @@ export const ShowTodoList = async () => {
       })
       .map((todo) => `
         <li data-id="${todo.id}" data-title="${todo.title}" data-completed="${todo.completed}" class="${todo.completed ? 'todo-completed' : ''}">
-          <input type="checkbox" class="completed-status" ${ todo.completed ? 'checked' : '' }>
-          ${todo.title}
-          <button class="edit-todo">Edit</button>
-          <button class="delete-todo">Del</button>
+          <label>
+            <input type="checkbox" class="completed-status" ${ todo.completed ? 'checked' : '' }>
+            ${todo.title}
+          </label>
+
+          <div class="button-group">
+            <button class="edit-todo">
+              <picture class="icon">
+                <source srcset="./src/assets/icons/edit.svg" media="(prefers-color-scheme: light)">
+                <img src="./src/assets/icons/edit-lgt.svg" alt="Edit icon">
+              </picture>
+            </button>
+
+            <button class="delete-todo">
+              <picture class="icon">
+                <source srcset="./src/assets/icons/delete.svg" media="(prefers-color-scheme: light)">
+                <img src="./src/assets/icons/delete-lgt.svg" alt="Delete icon">
+              </picture>
+            </button>
+          </div>
         </li>
       `).join("");
 
@@ -47,9 +64,10 @@ export const ShowTodoList = async () => {
   } else {
     ul.innerHTML = `
       <li class="todo-list-empty">
-        <h3 class="text-center">Your list is empty - start by adding a new task!</h3>
+        <img src="./src/assets/images/cactus-${randomNumber}.webp" width="200" height="200" alt="Happy cactus">
+        <h3 class="text-center">Your list is empty <br> - start fresh by adding a new task!</h3>
       </li>`;
-    clearListBtn.classList.add('hide');
+    todoListHeading.classList.add('hide');
   }
 
   main.innerHTML = '';

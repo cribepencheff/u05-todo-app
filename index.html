@@ -27,11 +27,28 @@
       <div id="todos" class="hide">
         <form id="todo-form">
           <input type="text" id="todo-input" name="todo-new" class="form-control" placeholder="Enter new task…">
-          <button id="add-todo-btn" class="btn-primary" disabled>Add Todo</button>
-          <button id="clear-list-btn">Clear list</button>
+          <button id="add-todo-btn" class="btn-primary" disabled>
+            <picture class="icon">
+              <img src="./src/assets/icons/plus-lgt.svg" alt="Add task icon">
+            </picture>
+            Add task
+          </button>
+
+          <!--  -->
         </form>
 
-        <h3>Tasklist</h3>
+        <h3 id="todo-list-heading">
+          <span>My Tasks</span>
+
+          <button id="clear-list-btn">
+            <picture class="icon">
+              <source srcset="./src/assets/icons/clear-circle.svg" media="(prefers-color-scheme: light)">
+              <img src="./src/assets/icons/clear-circle-lgt.svg" alt="Clear list icon">
+            </picture>
+            Clear list
+          </button>
+        </h3>
+
         <div id="todo-list"></div>
       </div>
     </div>

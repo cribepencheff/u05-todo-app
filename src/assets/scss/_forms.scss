@@ -36,8 +36,6 @@ form {
 }
 
 input {
-  display: block;
-  width: 100%;
   font-family: $font-family-medium;
   margin-bottom: 0.75rem;
 
@@ -48,19 +46,24 @@ input {
   &[type="text"],
   &[type="email"],
   &[type="password"] {
+    display: block;
+    width: 100%;
     font-size: 1rem;
     line-height: 1.5;
     padding: 0.5rem 0.75rem;
     border-radius: $border-radius;
     border: none;
     border: 1px solid transparent;
-    box-shadow: $box-shadow-lgt;
     outline-color: transparent;
     transition: outline-color 0.25s;
 
     &:focus,
     &:focus-visible {
       outline-color: $color-primary;
+    }
+
+    @media (prefers-color-scheme: light) {
+      box-shadow: $box-shadow-lgt;
     }
   }
 

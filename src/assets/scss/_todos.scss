@@ -1,0 +1,64 @@
+@use './variables' as *;
+
+#todos {
+  max-width: $max-width-md;
+  margin: 0 auto;
+  margin-top: 2rem;
+
+  @media #{$small-down} {
+    margin-top: 1rem;
+  }
+
+  @media #{$medium-up} {
+    margin-top: 6vw;
+  }
+
+  @media #{$xlarge-up} {
+    margin-top: 4rem;
+  }
+
+  h3 {
+    margin-block: 2.5rem 1rem;
+  }
+}
+
+#todo-form {
+  width: 100%;
+  max-width: unset;
+}
+
+#todo-list {
+  .spinner {
+    width: 40px;
+    height: 40px;
+
+    border: 4px solid $color-gray-lgt;
+    border-right-color: transparent;
+    margin: 3rem auto 0;
+  }
+
+  li {
+    background-color: $color-gray-drk;
+    border-radius: $border-radius-lrg;
+    margin-bottom: 0.5rem;
+  }
+}
+
+#todo-list li.todo-list-empty {
+  background-color: transparent;
+  box-shadow: none;
+  color: $color-gray-lgt;
+}
+
+@media (prefers-color-scheme: light) {
+  #todo-list li {
+    background-color: $color-white;
+    box-shadow: $box-shadow-lgt;
+  }
+
+  #todo-list li.todo-list-empty {
+    background-color: transparent;
+    box-shadow: none;
+    color: $color-gray;
+  }
+}

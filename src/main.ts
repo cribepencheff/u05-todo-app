@@ -4,14 +4,15 @@ import { checkSession } from './utils/session';
 import { createTodo, handleClearList } from './utils/todosService';
 import { handleLogOut } from './services/auth';
 import { handleAuthForm } from './components/AuthForm';
-import { addSpinnerSmall, removeSpinnerSmall } from './components/Loading';
+import { addSpinnerSmall } from './components/Loading';
 import { ShowTodoList } from './components/ShowTodoList';
 
 const app = document.getElementById('app') as HTMLElement;
 const header = document.getElementById('header') as HTMLElement;
 const headerUser = header.querySelector('.user-email') as HTMLElement;
 const logOutBtn = document.getElementById('log-out') as HTMLButtonElement;
-const todosEl = document.getElementById('todos') as HTMLElement;
+const todosContainer = document.getElementById('todos') as HTMLElement;
+const todosList = document.getElementById('todo-list') as HTMLUListElement;
 const inputEl = document.getElementById('todo-input') as HTMLInputElement;
 const addBtn = document.getElementById('add-todo-btn') as HTMLButtonElement;
 const clearListBtn = document.getElementById('clear-list-btn') as HTMLButtonElement;
@@ -25,7 +26,7 @@ const initApp = async () => {
   let inputValue = '';
 
   if (session) {
-    todosEl.classList.remove('hide');
+    todosContainer.classList.remove('hide');
     logOutBtn.classList.remove('hide');
 
     logOutBtn.addEventListener("click", async () => {
@@ -56,13 +57,12 @@ const initApp = async () => {
     });
 
     // Render Todo list
-    addSpinnerSmall(todosEl);
+    addSpinnerSmall(todosList);
     await ShowTodoList();
-    removeSpinnerSmall(todosEl);
 
   } else {
     // Show Signup or Login form
-    todosEl.classList.add('hide');
+    todosContainer.classList.add('hide');
     handleAuthForm(app, false);
   }
 };

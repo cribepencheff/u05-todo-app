@@ -16,6 +16,7 @@
 }
 
 #app {
+  width: 100%;
   max-width: $max-width-lg;
   margin: 0 auto;
   padding: 0 1rem 1rem;
@@ -37,6 +38,7 @@ h1, h2, h3, h4, h5, p {
 }
 
 h1 {
+  margin-inline: auto;
   margin-top: 2rem;
   margin-bottom: 3rem;
   font-size: 1.8rem;

@@ -4,6 +4,7 @@
 @use './assets/scss/base' as *;
 @use './assets/scss/header' as *;
 @use './assets/scss/forms' as *;
+@use './assets/scss/todos' as *;
 
 body {
   margin: 0;
@@ -31,9 +32,9 @@ body {
   height: 12px;
   width: 12px;
   animation: rotate .8s infinite linear;
-  border: 1px solid #fff;
+  border: 1px solid $color-white;
   border-right-color: transparent;
-  border-radius: 50%;
+  border-radius: 50vw;
   z-index: 1;
 }
 

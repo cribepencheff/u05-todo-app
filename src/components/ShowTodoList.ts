@@ -45,7 +45,10 @@ export const ShowTodoList = async () => {
       })
     });
   } else {
-    ul.innerHTML = `<li>List empty, please add a todo</li>`;
+    ul.innerHTML = `
+      <li class="todo-list-empty">
+        <h3 class="text-center">Your list is empty - start by adding a new task!</h3>
+      </li>`;
     clearListBtn.classList.add('hide');
   }
 

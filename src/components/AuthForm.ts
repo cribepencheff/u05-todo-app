@@ -61,7 +61,7 @@ export const handleAuthForm = (app: HTMLElement, isSignUp: boolean) => {
   app.appendChild(authForm);
 
   // Submit Event
-  authForm.addEventListener('submit', async (e) => {
+  authForm.addEventListener('submit', async (e: Event) => {
     e.preventDefault();
     const email = emailInput.value;
     const password = passwordInput.value;

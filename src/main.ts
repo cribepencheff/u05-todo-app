@@ -29,18 +29,18 @@ const initApp = async () => {
     todosContainer.classList.remove('hide');
     logOutBtn.classList.remove('hide');
 
-    logOutBtn.addEventListener("click", async () => {
+    logOutBtn.addEventListener('click', async () => {
       await handleLogOut();
     });
 
     // Enable submit button
-    inputEl.addEventListener("input", () => {
+    inputEl.addEventListener('input', () => {
       inputValue = inputEl.value.trim();
       addBtn.disabled = inputValue.length < 3;
     })
 
     // Add todo
-    addBtn.addEventListener("click", (e) => {
+    addBtn.addEventListener('click', (e: Event) => {
       e.preventDefault();
       if (inputValue) {
         createTodo(inputValue);
@@ -51,7 +51,7 @@ const initApp = async () => {
     });
 
     // Clear list
-    clearListBtn.addEventListener("click", (e) => {
+    clearListBtn.addEventListener('click', (e: Event) => {
       e.preventDefault();
       handleClearList();
     });

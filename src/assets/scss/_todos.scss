@@ -94,8 +94,10 @@
       margin-right: 1rem;
     }
 
-    &:hover:before {
-      background-image: url('./assets/icons/checked.svg');
+    @media (pointer: fine) {
+      &:hover:before {
+        background-image: url('./assets/icons/checked.svg');
+      }
     }
   }
 

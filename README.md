@@ -4,7 +4,7 @@
 
 ## Projektbeskrivning
 
-Detta är en enkel todo-applikation där användare kan logga in med e-post och lösenord för att hantera sina personliga att-göra-listor.
+Detta är en enkel todo-applikation där användare kan registrera sig (sign up), logga in med e-post och lösenord för att hantera sina personliga att-göra-listor.
 Applikationen är byggd med *Vite*, *Vanilla TypeScript* och *Supabase* som Backend-as-a-Service.
 
 ## Reflektioner och Lärdomar

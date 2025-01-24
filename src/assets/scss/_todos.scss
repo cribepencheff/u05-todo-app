@@ -70,7 +70,6 @@
     justify-content: space-between;
     padding: 0.75rem;
     margin-bottom: 0.75rem;
-
     transition: border 0.25s;
   }
 
@@ -182,9 +181,14 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  #todo-list li:not(.todo-completed):hover {
-    border-color: $color-bg-drk;
-    box-shadow: $box-shadow-drk;
+  #todo-list li {
+    &:not(.todo-completed):not(.todo-list-empty) {
+
+      &:hover {
+        border-color: $color-bg-drk;
+        box-shadow: $box-shadow-drk;
+      }
+    }
   }
 
   .button-group button:hover {

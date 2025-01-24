@@ -2,25 +2,15 @@ import { supabase } from './supabaseClient';
 import { AuthUserPass } from '../types/app.types';
 
 export const handleLogin = async ({ email, password }: AuthUserPass) => {
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-
-  if (error) {
-    console.error('Login error:', error.message);
-    throw new Error('Log in failed. Try again.');
-  }
-
-  return data.user;
+  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) throw error
+  window.location.reload();
 };
 
 export const handleSignUp = async ({ email, password }: AuthUserPass) => {
-  const { data, error } = await supabase.auth.signUp({ email, password });
-
-  if (error) {
-    console.error('Sign-up error:', error.message);
-    throw new Error('Sign up failed. Try again later.');
-  }
-
-  return data;
+  const { error } = await supabase.auth.signUp({ email, password });
+  if (error) throw error
+  window.location.reload();
 };
 
 export const handleLogOut = async (): Promise<void> => {

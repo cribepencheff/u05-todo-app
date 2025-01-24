@@ -1,4 +1,4 @@
-import { supabase } from '../services/supabaseClient';
+import { handleLogin, handleSignUp } from '../services/auth';
 import { addSpinnerSmall, removeSpinnerSmall } from './Loading';
 
 export const handleAuthForm = (app: HTMLElement, isSignUp: boolean) => {
@@ -70,18 +70,12 @@ export const handleAuthForm = (app: HTMLElement, isSignUp: boolean) => {
 
     try {
       if (isSignUp) {
-        // Handle sign up
-        const { error } = await supabase.auth.signUp({ email, password });
-        if (error) throw error
-        alert('Signup successful! Please check your email to confirm your account to logg in.');
+        handleSignUp({ email, password});
+        alert('Signup successful! \n Please check your email to confirm your account to logg in.');
       } else {
 
-        // Handle log in
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error
+        handleLogin({ email, password });
       }
-
-      window.location.reload(); // Reload, show ToDos
 
     } catch (error) {
       if (error instanceof Error) errorMessage.textContent = error.message;

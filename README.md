@@ -42,7 +42,7 @@ Vid publicering gjorde jag en miss genom att först pusha min `.env`-fil med Sup
 
 2. **Ställ in miljövariabler**
 
-    För lokal utveckling, skapa en `.env`-fil i root-katalogen och lägg till:
+    För lokal utveckling, skapa en `.env.local`-fil i root-katalogen och lägg till:
 
     ```
     VITE_SUPABASE_URL=<din-supabase-url>

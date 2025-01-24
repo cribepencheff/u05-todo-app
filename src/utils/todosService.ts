@@ -100,7 +100,7 @@ export const handleTodoCompletion = async (todoId: number, completed: boolean): 
 
 // Clear todo list
 export const handleClearList = async () => {
-  const confirmClear = confirm(`This will permanently delete all todos. \n Are you sure you want to continue?`);
+  const confirmClear = confirm(`This will permanently delete all todos. \nAre you sure you want to continue?`);
 
   if (confirmClear) {
     const { data } = await  supabase.auth.getUser();

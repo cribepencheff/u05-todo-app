@@ -18,7 +18,8 @@ export const handleSignUp = async ({ email, password }: AuthUserPass) => {
     password,
     options: {
       emailRedirectTo: redirectTo,
-    }, });
+    },
+  });
   if (error) throw error
   alert('Signup successful! \nPlease check your email to confirm your account to logg in.');
   window.location.reload();

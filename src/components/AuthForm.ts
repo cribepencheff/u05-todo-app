@@ -70,13 +70,10 @@ export const handleAuthForm = (app: HTMLElement, isSignUp: boolean) => {
 
     try {
       if (isSignUp) {
-        handleSignUp({ email, password});
-        alert('Signup successful! \n Please check your email to confirm your account to logg in.');
+        await handleSignUp({ email, password });
       } else {
-
-        handleLogin({ email, password });
+        await handleLogin({ email, password });
       }
-
     } catch (error) {
       if (error instanceof Error) errorMessage.textContent = error.message;
       else errorMessage.textContent = 'An unknown error occurred.';

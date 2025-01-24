@@ -10,6 +10,7 @@ export const handleLogin = async ({ email, password }: AuthUserPass) => {
 export const handleSignUp = async ({ email, password }: AuthUserPass) => {
   const { error } = await supabase.auth.signUp({ email, password });
   if (error) throw error
+  alert('Signup successful! \n Please check your email to confirm your account to logg in.');
   window.location.reload();
 };
 

@@ -38,15 +38,18 @@
   max-width: unset;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.75rem;
 
   > input {
     margin-bottom: 0;
+    width: auto;
+    flex: 1 1 auto;
   }
 
   button {
-    flex: 1 0 auto;
+    flex: 0 1 auto;
     padding-block: 0.625rem;
   }
 }

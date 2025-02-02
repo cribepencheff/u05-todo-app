@@ -78,3 +78,14 @@ input {
     }
   }
 }
+
+.form-instrucitions {
+  flex: 0 1 100%;
+  color: $color-primary;
+  opacity: 0.6;
+
+  @media (prefers-color-scheme: dark) {
+    color: $color-gray-drk;
+    opacity: 1;
+  }
+}
